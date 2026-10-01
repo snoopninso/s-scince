@@ -1,20 +1,22 @@
 import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
+import scienceLogo from './Reference/08A2BB1D-EB91-467F-8303-8F22763032CE.JPG'
 import './App.css'
 
 const navItems = [
   { id: 'home', label: '01 HOME' },
   { id: 'about', label: '02 ABOUT' },
-  { id: 'experience', label: '03 EXPERIENCE' },
-  { id: 'services', label: '04 SERVICES' },
-  { id: 'portfolio', label: '05 PORTFOLIO' },
-  { id: 'branding', label: '06 BRANDING' },
-  { id: 'collaborations', label: '07 COLLABORATIONS' },
-  { id: 'science-promise', label: '08 THE SCIENCE PROMISE' },
-  { id: 'contact', label: '09 CONTACT' },
+  { id: 'vision', label: '03 VISION' },
+  { id: 'mission', label: '04 MISSION' },
+  { id: 'services', label: '05 SERVICES' },
+  { id: 'why-science', label: '06 WHY SCIENCE' },
+  { id: 'leadership', label: '07 LEADERSHIP' },
+  { id: 'portfolio', label: '08 PORTFOLIO' },
+  { id: 'promise', label: '09 PROMISE' },
+  { id: 'contact', label: '10 CONTACT' },
 ]
 
-const aboutAreas = [
+const aboutPoints = [
   'Medical conferences',
   'Corporate events',
   'VIP experiences',
@@ -40,55 +42,22 @@ const missionPillars = [
   },
 ]
 
-const services = [
-  {
-    name: 'Medical Conferences',
-    summary: 'Specialized event planning for scientific and medical audiences.',
-  },
-  {
-    name: 'Scientific Conferences',
-    summary: 'Thoughtful coordination for knowledge-driven experiences and gathering moments.',
-  },
-  {
-    name: 'Academic Conferences',
-    summary: 'Clear, polished event experiences built around learning and engagement.',
-  },
-  {
-    name: 'Corporate Conferences',
-    summary: 'Professionally managed conferences designed to align vision, teams, and outcomes.',
-  },
-  {
-    name: 'Government Conferences',
-    summary: 'Structured experiences that balance precision, protocol, and presentation.',
-  },
-  {
-    name: 'International Conferences',
-    summary: 'Global event coordination grounded in seamless planning and impactful delivery.',
-  },
-  {
-    name: 'Company Launches',
-    summary: 'A memorable introduction that communicates identity, ambition, and momentum.',
-  },
-  {
-    name: 'Project Inaugurations',
-    summary: 'High-impact moments that position milestones with clarity and confidence.',
-  },
-  {
-    name: 'Annual Meetings',
-    summary: 'Purposeful event environments that connect leadership, teams, and objectives.',
-  },
-  {
-    name: 'Product Launches',
-    summary: 'Immersive product reveal experiences shaped around attention and anticipation.',
-  },
-  {
-    name: 'Corporate Gatherings',
-    summary: 'Curated experiences that strengthen relationships and create lasting presence.',
-  },
-  {
-    name: 'Internal Company Events',
-    summary: 'Elevated team experiences that celebrate culture, alignment, and connection.',
-  },
+const conferenceServices = [
+  'Medical Conferences',
+  'Scientific Conferences',
+  'Academic Conferences',
+  'Corporate Conferences',
+  'Government Conferences',
+  'International Conferences',
+]
+
+const corporateServices = [
+  'Company Launches',
+  'Project Inaugurations',
+  'Annual Meetings',
+  'Product Launches',
+  'Corporate Gatherings',
+  'Internal Company Events',
 ]
 
 const reasons = [
@@ -102,45 +71,32 @@ const reasons = [
   },
   {
     title: 'Seamless Execution',
-    text: 'From planning to on-site management, ensuring a smooth and successful event experience.',
+    text: 'From planning to on-site management, we ensure a smooth and successful event experience.',
   },
 ]
 
-const experienceSteps = [
-  'Vision',
-  'Planning',
-  'Creative',
-  'Execution',
-  'Experience',
-  'Impact',
+const leadership = [
+  {
+    role: 'CEO & Managing Director',
+    name: 'OSAMA ELMAWY',
+  },
+  {
+    role: 'Founder & Chair of the Board',
+    name: 'AYA NASSAR',
+  },
+]
+
+const stats = [
+  { value: '18+', label: 'YEARS OF EXPERIENCE' },
+  { value: '500+', label: 'PROJECTS DELIVERED' },
+  { value: '120+', label: 'EVENTS MANAGED' },
+  { value: '80+', label: 'STRATEGIC PARTNERSHIPS' },
 ]
 
 const portfolioItems = [
-  {
-    category: 'Conference Experience',
-    title: 'Project Details Coming Soon',
-    label: 'Coming Soon',
-    summary: 'A placeholder experience designed for future SCIENCE project storytelling.',
-  },
-  {
-    category: 'Corporate Event',
-    title: 'Project Details Coming Soon',
-    label: 'Coming Soon',
-    summary: 'A premium editorial placeholder for upcoming event management showcases.',
-  },
-  {
-    category: 'Brand Experience',
-    title: 'Project Details Coming Soon',
-    label: 'Coming Soon',
-    summary: 'Visual storytelling structure ready to present verified client work when added.',
-  },
-]
-
-const collaborations = [
-  'Coming Soon',
-  'Project Partners',
-  'Official Collaborations',
-  'To Be Announced',
+  { category: 'Premium event showcase', title: 'Project Details Coming Soon', description: 'A placeholder experience for upcoming SCIENCE project storytelling.' },
+  { category: 'Conference experience', title: 'Project Details Coming Soon', description: 'Structured to showcase future event design, execution, and impact.' },
+  { category: 'Corporate engagement', title: 'Project Details Coming Soon', description: 'Editorial placeholders ready for verified SCIENCE client work and outcomes.' },
 ]
 
 function App() {
@@ -153,12 +109,12 @@ function App() {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         revealItems,
-        { y: 32, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1.1, stagger: 0.1, ease: 'power3.out', delay: 0.12 },
+        { y: 42, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1, stagger: 0.12, ease: 'power3.out' },
       )
     })
 
-    const sectionObserver = new IntersectionObserver(
+    const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
@@ -169,58 +125,56 @@ function App() {
       { threshold: 0.45 },
     )
 
-    document.querySelectorAll('section[id], footer[id]').forEach((section) => {
-      sectionObserver.observe(section)
-    })
+    document.querySelectorAll('section[id], footer[id]').forEach((element) => observer.observe(element))
 
     const handlePointerMove = (event) => {
       if (!cursorRef.current) return
       cursorRef.current.style.transform = `translate(${event.clientX}px, ${event.clientY}px)`
     }
 
-    const setCursorState = (state) => {
+    const updateCursor = (active) => {
       if (!cursorRef.current) return
-      cursorRef.current.classList.toggle('is-hovering', state)
+      cursorRef.current.classList.toggle('is-hovering', active)
     }
 
-    const hoverables = document.querySelectorAll(
-      'a, button, .project-card, .service-item, .chip, .nav-link, .logo-mark',
-    )
-    hoverables.forEach((element) => {
-      element.addEventListener('pointerenter', () => setCursorState(true))
-      element.addEventListener('pointerleave', () => setCursorState(false))
+    const interactiveItems = document.querySelectorAll('a, button, .service-item, .project-card, .leader-card, .stat-card, .brand-mark')
+
+    interactiveItems.forEach((element) => {
+      element.addEventListener('pointerenter', () => updateCursor(true))
+      element.addEventListener('pointerleave', () => updateCursor(false))
     })
 
     window.addEventListener('pointermove', handlePointerMove)
 
     return () => {
       ctx.revert()
-      sectionObserver.disconnect()
+      observer.disconnect()
       window.removeEventListener('pointermove', handlePointerMove)
-      hoverables.forEach((element) => {
-        element.removeEventListener('pointerenter', () => setCursorState(true))
-        element.removeEventListener('pointerleave', () => setCursorState(false))
+      interactiveItems.forEach((element) => {
+        element.removeEventListener('pointerenter', () => updateCursor(true))
+        element.removeEventListener('pointerleave', () => updateCursor(false))
       })
     }
   }, [])
 
   return (
     <div className="page-shell">
-      <div className="cursor" ref={cursorRef} aria-hidden="true" />
+      <div ref={cursorRef} className="cursor" aria-hidden="true" />
 
       <header className="site-header">
-        <div className="nav-wrap">
-          <a href="#home" className="brand" aria-label="SCIENCE home">
-            <span className="logo-mark" aria-hidden="true">S</span>
+        <div className="nav-shell">
+          <a className="brand" href="#home" aria-label="SCIENCE home">
+            <img src={scienceLogo} alt="SCIENCE logo" className="brand-mark" />
             <span className="brand-text">SCIENCE</span>
           </a>
 
           <button
             type="button"
             className="menu-toggle"
+            onClick={() => setMenuOpen((value) => !value)}
             aria-expanded={menuOpen}
             aria-controls="site-nav"
-            onClick={() => setMenuOpen((open) => !open)}
+            aria-label="Toggle navigation"
           >
             <span />
             <span />
@@ -242,35 +196,32 @@ function App() {
       </header>
 
       <main>
-        <section id="home" className="hero-section section">
+        <section id="home" className="section hero-section">
           <div className="hero-grid">
             <div className="hero-copy reveal">
-              <p className="eyebrow">EVENT MANAGEMENT</p>
+              <p className="eyebrow">Event Management</p>
+              <img src={scienceLogo} alt="SCIENCE logo" className="hero-logo" />
               <h1>SCIENCE</h1>
-              <p className="hero-subtitle">Event Management</p>
-              <p className="hero-text">
-                Full-service event management built around strategic planning, creative thinking,
-                and flawless execution.
+              <p className="hero-tag">Event Management</p>
+              <p className="lede">
+                Full-service event management dedicated to exceptional experiences through
+                strategic planning, creative thinking, and flawless execution.
               </p>
-
               <div className="cta-row">
-                <a href="#contact" className="primary-button">
-                  Book a Consultation
-                </a>
-                <a href="#portfolio" className="secondary-link">
-                  View Portfolio
-                </a>
+                <a href="#contact" className="primary-button">Book a Consultation</a>
+                <a href="#portfolio" className="secondary-link">View Portfolio</a>
               </div>
             </div>
 
-            <div className="hero-visual reveal" aria-label="SCIENCE visual concept">
-              <div className="visual-frame">
-                <div className="visual-ambient" />
-                <div className="floating-card card-top">
+            <div className="hero-visual reveal" aria-label="SCIENCE event concept background">
+              <div className="visual-stage">
+                <div className="shape glow-one" />
+                <div className="shape glow-two" />
+                <div className="status-card top-card">
                   <span>Full-Service</span>
                   <strong>Event Delivery</strong>
                 </div>
-                <div className="floating-card card-bottom">
+                <div className="status-card lower-card">
                   <span>From concept</span>
                   <strong>To experience</strong>
                 </div>
@@ -278,7 +229,7 @@ function App() {
             </div>
           </div>
 
-          <div className="hero-meta reveal">
+          <div className="hero-tags reveal">
             <span>Medical Conferences</span>
             <span>Corporate Events</span>
             <span>VIP Experiences</span>
@@ -288,64 +239,63 @@ function App() {
         </section>
 
         <section id="about" className="section">
-          <div className="section-heading reveal">
+          <div className="section-header reveal">
             <p className="eyebrow">02 ABOUT</p>
-            <h2>Crafting distinctive experiences with precision.</h2>
+            <h2>Where strategy, creativity, and execution meet.</h2>
           </div>
 
-          <div className="about-grid">
-            <div className="about-copy reveal">
+          <div className="about-layout">
+            <div className="story reveal">
               <p>
                 SCIENCE Event Management is a full-service event management company dedicated to
                 delivering exceptional events through strategic planning, creative thinking, and
                 flawless execution.
               </p>
               <p>
-                We create experiences that connect audiences, strengthen brand presence, and
-                transform important moments into lasting memories.
+                From medical conferences and corporate events to VIP experiences, exhibitions, and
+                official ceremonies, we create tailored solutions that reflect excellence,
+                precision, and lasting impact.
               </p>
             </div>
 
-            <div className="about-aside reveal">
-              <div className="mini-panel">
-                <span className="label">Specializations</span>
-                <ul>
-                  {aboutAreas.map((area) => (
-                    <li key={area}>{area}</li>
-                  ))}
-                </ul>
-              </div>
+            <div className="info-panel reveal">
+              <span className="panel-label">Focus Areas</span>
+              <ul>
+                {aboutPoints.map((point) => (
+                  <li key={point}>{point}</li>
+                ))}
+              </ul>
             </div>
           </div>
         </section>
 
-        <section id="experience" className="section">
-          <div className="section-heading reveal">
-            <p className="eyebrow">03 EXPERIENCE</p>
-            <h2>From vision to unforgettable impact.</h2>
+        <section id="vision" className="section">
+          <div className="section-header reveal">
+            <p className="eyebrow">03 VISION</p>
+            <h2>To become the trusted partner of choice in event management.</h2>
           </div>
 
-          <div className="experience-timeline reveal">
-            {experienceSteps.map((step, index) => (
-              <div key={step} className="timeline-item">
-                <span className="timeline-index">0{index + 1}</span>
-                <h3>{step}</h3>
-              </div>
-            ))}
+          <div className="vision-block reveal">
+            <p>
+              We aspire to redefine excellence through innovation, precision, and flawless
+              execution, delivering world-class events that exceed expectations and reflect the
+              unique identity of every client.
+            </p>
+            <p className="vision-strap">Creating Experiences That Last Beyond the Event.</p>
           </div>
         </section>
 
         <section id="mission" className="section">
-          <div className="section-heading reveal">
+          <div className="section-header reveal">
             <p className="eyebrow">04 MISSION</p>
-            <h2>Mission-driven execution built around lasting impact.</h2>
+            <h2>Our mission is built on three lasting principles.</h2>
           </div>
 
-          <div className="mission-stack reveal">
+          <div className="mission-grid reveal">
             {missionPillars.map((pillar) => (
-              <article key={pillar.title} className="mission-item">
+              <article key={pillar.number} className="mission-item">
                 <span className="mission-number">{pillar.number}</span>
-                <div>
+                <div className="mission-copy">
                   <h3>{pillar.title}</h3>
                   <p>{pillar.text}</p>
                 </div>
@@ -355,29 +305,43 @@ function App() {
         </section>
 
         <section id="services" className="section">
-          <div className="section-heading reveal">
+          <div className="section-header reveal">
             <p className="eyebrow">05 SERVICES</p>
-            <h2>Tailored event solutions for every occasion.</h2>
+            <h2>Full-spectrum event organization for every setting.</h2>
           </div>
 
-          <div className="services-grid reveal">
-            {services.map((service) => (
-              <article key={service.name} className="service-item">
-                <span className="service-index">{service.name.slice(0, 2).toUpperCase()}</span>
-                <h3>{service.name}</h3>
-                <p>{service.summary}</p>
-              </article>
-            ))}
+          <div className="service-columns reveal">
+            <div className="service-group">
+              <p className="group-label">Conference Organization</p>
+              <div className="service-list">
+                {conferenceServices.map((service) => (
+                  <div key={service} className="service-item">
+                    <span>{service}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="service-group">
+              <p className="group-label">Corporate Events</p>
+              <div className="service-list">
+                {corporateServices.map((service) => (
+                  <div key={service} className="service-item">
+                    <span>{service}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
 
         <section id="why-science" className="section">
-          <div className="section-heading reveal">
+          <div className="section-header reveal">
             <p className="eyebrow">06 WHY CHOOSE SCIENCE</p>
-            <h2>Quality, customization, and seamless delivery.</h2>
+            <h2>Professional excellence built for meaningful outcomes.</h2>
           </div>
 
-          <div className="reason-grid reveal">
+          <div className="why-grid reveal">
             {reasons.map((reason) => (
               <article key={reason.title} className="reason-card">
                 <h3>{reason.title}</h3>
@@ -387,85 +351,90 @@ function App() {
           </div>
         </section>
 
+        <section id="leadership" className="section">
+          <div className="section-header reveal">
+            <p className="eyebrow">07 LEADERSHIP</p>
+            <h2>Leadership rooted in vision, clarity, and execution.</h2>
+          </div>
+
+          <div className="leadership-grid reveal">
+            {leadership.map((person) => (
+              <article key={person.name} className="leader-card">
+                <span className="leader-role">{person.role}</span>
+                <h3>{person.name}</h3>
+              </article>
+            ))}
+          </div>
+
+          <div className="quote-panel reveal">
+            <p>
+              “At SCIENCE, we believe that every successful event begins with a clear vision,
+              strategic planning, and an unwavering commitment to excellence. Our mission is to
+              transform every event into a seamless experience through innovation, precision, and
+              exceptional execution.”
+            </p>
+          </div>
+        </section>
+
         <section id="portfolio" className="section">
-          <div className="section-heading reveal">
-            <p className="eyebrow">07 PORTFOLIO</p>
-            <h2>Editorial storytelling built for premium events.</h2>
+          <div className="section-header reveal">
+            <p className="eyebrow">08 PORTFOLIO</p>
+            <h2>Business development and marketing leadership with measurable momentum.</h2>
+          </div>
+
+          <div className="jowana-box reveal">
+            <div className="jowana-copy">
+              <p className="scan-label">SCAN TO VIEW MY PORTFOLIO</p>
+              <h3>JOWANA ALMALKY</h3>
+              <p className="role">Business Development &amp; Marketing Consultant</p>
+              <p className="title">GENERAL MANAGER</p>
+            </div>
+
+            <div className="stats-grid">
+              {stats.map((stat) => (
+                <div key={stat.label} className="stat-card">
+                  <strong>{stat.value}</strong>
+                  <span>{stat.label}</span>
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className="portfolio-grid reveal">
-            {portfolioItems.map((project) => (
-              <article key={project.title} className="project-card">
+            {portfolioItems.map((item) => (
+              <article key={item.title} className="project-card">
                 <div className="project-visual">
-                  <span>{project.label}</span>
+                  <span>{item.category}</span>
                 </div>
-                <div className="project-meta">
-                  <p>{project.category}</p>
-                  <h3>{project.title}</h3>
+                <div className="project-body">
+                  <p>{item.category}</p>
+                  <h3>{item.title}</h3>
+                  <small>{item.description}</small>
                 </div>
-                <p className="project-summary">{project.summary}</p>
               </article>
             ))}
           </div>
         </section>
 
-        <section id="branding" className="section">
-          <div className="section-heading reveal">
-            <p className="eyebrow">08 BRANDING</p>
-            <h2>Visual identities designed to command attention.</h2>
+        <section id="promise" className="section promise-section">
+          <div className="section-header reveal">
+            <p className="eyebrow">09 THE SCIENCE PROMISE</p>
           </div>
 
-          <div className="branding-showcase reveal">
-            <div className="branding-panel panel-large">
-              <span className="panel-label">Event Identity</span>
-              <h3>Conference environments</h3>
-            </div>
-            <div className="branding-panel panel-medium">
-              <span className="panel-label">Stage Design</span>
-              <h3>Backdrops & banners</h3>
-            </div>
-            <div className="branding-panel panel-small">
-              <span className="panel-label">Print</span>
-              <h3>Invitations & materials</h3>
-            </div>
-          </div>
-        </section>
-
-        <section id="collaborations" className="section">
-          <div className="section-heading reveal">
-            <p className="eyebrow">09 COLLABORATIONS</p>
-            <h2>Partnerships and experiences shaped for lasting impact.</h2>
-          </div>
-
-          <div className="collab-grid reveal">
-            {collaborations.map((item) => (
-              <div key={item} className="collab-chip">
-                {item}
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section id="science-promise" className="section promise-section">
-          <div className="promise-quote reveal">
-            <p className="eyebrow">10 THE SCIENCE PROMISE</p>
-            <blockquote>
-              “Great events don’t happen by chance. They are designed with vision, planned with
-              precision, and delivered with excellence.”
-            </blockquote>
-          </div>
+          <blockquote className="promise-quote reveal">
+            “Great events don’t happen by chance. They are designed with vision, planned with
+            precision, and delivered with excellence.”
+          </blockquote>
         </section>
 
         <section id="contact" className="section contact-section">
-          <div className="contact-card reveal">
+          <div className="contact-box reveal">
             <div className="contact-copy">
-              <p className="eyebrow">11 CONTACT</p>
-              <h2>Let’s shape your next standout event.</h2>
-              <div className="contact-details">
+              <p className="eyebrow">10 CONTACT</p>
+              <h2>We are here to assist you.</h2>
+              <div className="contact-list">
                 <a href="tel:+201147599444">+201147599444</a>
-                <a href="https://www.elmawy.com" target="_blank" rel="noreferrer">
-                  www.elmawy.com
-                </a>
+                <a href="https://www.elmawy.com" target="_blank" rel="noreferrer">www.elmawy.com</a>
                 <a href="mailto:science@elmawy.com">science@elmawy.com</a>
                 <p>
                   Unit 1, 2nd Floor, Maxim Mall,
@@ -481,12 +450,19 @@ function App() {
       </main>
 
       <footer id="footer" className="site-footer">
-        <div className="footer-wrap">
-          <div className="brand footer-brand">
-            <span className="logo-mark" aria-hidden="true">S</span>
-            <span className="brand-text">SCIENCE</span>
+        <div className="footer-shell">
+          <div className="footer-brand">
+            <img src={scienceLogo} alt="SCIENCE logo" className="brand-mark small" />
+            <span>SCIENCE</span>
           </div>
-          <p>Creating exceptional event experiences with vision, precision, and excellence.</p>
+          <p>THANK YOU</p>
+        </div>
+        <div className="footer-message reveal">
+          <h3>LET’S CREATE EXTRAORDINARY EXPERIENCES TOGETHER</h3>
+          <p>
+            “Thank you for taking the time to discover SCIENCE Event Management. We look forward to
+            bringing your vision to life with creativity, precision, and excellence.”
+          </p>
         </div>
       </footer>
     </div>

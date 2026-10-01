@@ -1,16 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Cormorant+Garamond:wght@500;600;700&display=swap');
 
 :root {
-  --bg: #09090b;
-  --bg-soft: #101014;
-  --panel: rgba(18, 18, 22, 0.9);
-  --text: #f7f3ee;
-  --muted: rgba(244, 239, 232, 0.72);
-  --soft: rgba(255, 255, 255, 0.82);
-  --line: rgba(255, 255, 255, 0.1);
-  --gold: #d8b57a;
-  --shadow: 0 30px 60px rgba(0, 0, 0, 0.42);
-  --content-width: 1220px;
+  --bg: #0a0b0e;
+  --bg-soft: #111318;
+  --panel: rgba(11, 11, 13, 0.8);
+  --text: #f3efe9;
+  --muted: rgba(243, 239, 233, 0.72);
+  --line: rgba(255, 255, 255, 0.12);
+  --gold: #d5b37a;
+  --content-width: 1260px;
   --font-sans: 'Inter', 'Segoe UI', sans-serif;
   --font-display: 'Cormorant Garamond', serif;
 }
@@ -24,8 +22,8 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background:
-    radial-gradient(circle at top, rgba(216, 181, 122, 0.12), transparent 20%),
-    linear-gradient(180deg, #09090b 0%, #0d0d10 100%);
+    radial-gradient(circle at top, rgba(62, 123, 255, 0.12), transparent 24%),
+    linear-gradient(180deg, #0a0b0e 0%, #101317 100%);
   color: var(--text);
   font-family: var(--font-sans);
   font-synthesis: none;
@@ -38,28 +36,15 @@ body {
   box-sizing: border-box;
 }
 
-html, body, #root {
+html,
+body,
+#root {
   min-height: 100%;
 }
 
-body,
-button,
-a {
-  font: inherit;
-}
-
 img {
-  display: block;
   max-width: 100%;
-}
-
-button,
-a {
-  cursor: pointer;
-}
-
-button {
-  font: inherit;
+  display: block;
 }
 
 a {
@@ -67,10 +52,10 @@ a {
   text-decoration: none;
 }
 
-p {
-  margin: 0;
+button {
+  font: inherit;
 }
 
-ul {
+p {
   margin: 0;
 }
